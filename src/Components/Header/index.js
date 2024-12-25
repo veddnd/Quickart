@@ -5,8 +5,13 @@ import '../../App.css'; // Importing the CSS file
 import Searchbox from "../Searchbox";
 import Navigation from "./Navigation/index.js";
 import { FiUser, FiShoppingCart } from "react-icons/fi";
+import Button from '@mui/material/Button'; // Correctly import the Button component
+import {useContext } from 'react';
+import { MyContext } from '../../App';
 
 const Header = () => {
+    // const { setislogin } = useContext(MyContext);
+    const context = useContext(MyContext);
     return (
         <>
             <div className="headerWrapper">
@@ -30,7 +35,12 @@ const Header = () => {
                                 {/* Right - Icons and Price */}
 
                                 <div className="header-icons">
-                                    <FiUser size={22} className="icon" />
+                                    {
+                                        context.islogin !==true ?<Link to ="/signin"><Button className="signinb">Sign In</Button></Link> :
+                                        <FiUser size={22} className="icon" />
+                                    }
+                                    
+                                    
                                     <span className="cart-info">
                                         <FiShoppingCart size={22} className="icon" />
                                         <span className="cart-badge">1</span>

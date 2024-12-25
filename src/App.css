@@ -387,6 +387,13 @@ body {
   }
 }
 
+.signinb{
+  border-radius: 0px !important;
+}
+.signinb:hover{
+  background-color: #e8d0ee!important;
+}
+
 @media (max-width: 480px) {
   .top-strip p {
     font-size: 12px;
@@ -1573,3 +1580,55 @@ a:hover{
 }
 .carttotal h4{font-size :18px; font-weight:600;border-bottom: 1px solid rgba(0,0,0,0.1); padding: 16px;}
 .text-red{color: red !important}
+/* signin page  */
+/* Ensure the section covers the entire viewport */
+
+.section.signinpage {
+  height: 100vh; /* Full viewport height */
+  display: flex; /* Center content */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  background-image: url('https://images.unsplash.com/photo-1596367407372-96cb88503db6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHdoaXRlJTIwYmFjZ3JvdW5kfGVufDB8fDB8fHww'); /* Replace with the actual image path */
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repetition */
+  color: white; /* Ensure text is visible on the image */
+}
+
+/* Optional: Styling for the container */
+.signinpage .box{
+  width:480px;
+  height:510px;
+  background:#fff;
+  color:#262526 !important;
+  margin:auto
+}
+.signinpage .box img{
+  width: 180px;
+  height: 80px;
+  position:relative;
+}
+.signinpage .box h2{
+  color:#262526;
+  font-size:22px;
+  font-weight: 600;
+}
+.signinpage .box form {padding: 10px 10px;}
+.sgnup{margin-left:0px !important;}
+.signinbtn{background: #824e90 !important; margin-top: 20px !important;color:#fff
+!important; margin:10px !important ; border-radius: 10px !important ; padding: 5px !important;}
+.signinbtn:hover{background: #b664cd !important ;width: 100% !important;}
+.frgtpas{
+  margin-top: 25px !important;
+  margin-bottom: 5px !important;
+}
+.frgtpas .pass{color: #500066;}
+.sclmdia svg{font-size: medium;}
+.signuppage .box{width: 500px; height: 580px;}
+.action-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px; 
+  text-align: center;
+  background-color: #500066 !important;
+}
