@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
 import Relatedproducts from "./Relatedproducts";
 import { MyContext } from "../../../App.js";
+import Productitemcopy from "../../../Components/Productitem copy/index.js";
 
 const Productdetails = () => {
     const { id } = useParams(); // Extract product ID from the route
@@ -20,7 +21,7 @@ const Productdetails = () => {
             const token = sessionStorage.getItem("authToken"); // Retrieve the token
 
             if (!token) {
-                setError("User not authenticated! Please sign in."); // Set error if no token
+                setError("User not authenticated! Please sign in.");
                 setLoading(false);
                 return;
             }
@@ -30,32 +31,12 @@ const Productdetails = () => {
                     Authorization: `Bearer ${token}`, // Add token to headers
                 };
 
-                // Determine the API endpoint dynamically
-                const endpoints = [
-                    `http://localhost:4000/api/Product/${id}`,
-                    `http://localhost:4000/api/newarrivals/${id}`
-                ];
-
-                let response = null;
-
-                for (const endpoint of endpoints) {
-                    try {
-                        response = await axios.get(endpoint, { headers });
-                        if (response && response.data) break; // Break if data is retrieved
-                    } catch (err) {
-                        console.log(`Failed to fetch from ${endpoint}, trying next.`);
-                    }
-                }
-
-                if (!response || !response.data) {
-                    throw new Error("Product not found in both endpoints.");
-                }
-
+                const response = await axios.get(`http://localhost:4000/api/Product/${id}`, { headers });
                 setProduct(response.data); // Set product data
                 setLoading(false); // Stop loading
             } catch (err) {
                 console.error("Error fetching product details:", err);
-                setError("Failed to fetch product details!"); // Set error
+                setError("Failed to fetch product details!");
                 setLoading(false); // Stop loading
             }
         };
@@ -70,7 +51,7 @@ const Productdetails = () => {
     if (!product) return null;
 
     const addtocart = async (id) => {
-        const token = sessionStorage.getItem("authToken"); // Get the auth token
+        const token = sessionStorage.getItem("authToken");
         if (!token) {
             alert("Please sign in to add products to the cart.");
             return;
@@ -91,14 +72,10 @@ const Productdetails = () => {
                 userid: context.userId,
             };
 
-            console.log("Cart Item being sent:", cartItem);
-
             const response = await axios.post(
                 "http://localhost:4000/api/cart/add",
                 cartItem,
-                {
-                    headers,
-                }
+                { headers }
             );
 
             if (response.status === 201) {
@@ -117,13 +94,9 @@ const Productdetails = () => {
                 <div className="row">
                     <div className="col-md-4">
                         <img
-                            src={product.images[0][0]} // Render the product image
+                            src={product.images[0][0]} 
                             alt={product.name}
-                            style={{
-                                transition: "transform 0.3s ease",
-                                width: "100%",
-                                height: "auto",
-                            }}
+                            style={{ width: "100%", height: "auto" }}
                         />
                     </div>
                     <div className="col-md-7">
@@ -152,19 +125,16 @@ const Productdetails = () => {
 
                         <div className="product-pricing d-flex align-items-center">
                             <h2 className="product-price">${product.price}</h2>
-                            <span
-                                className={`product-stock ${product.countinstock > 0 ? "in-stock" : "out-of-stock"
-                                    }`}
-                            >
+                            <span className={`product-stock ${product.countinstock > 0 ? "in-stock" : "out-of-stock"}`}>
                                 {product.countinstock > 0 ? "IN STOCK" : "OUT OF STOCK"}
                             </span>
                         </div>
                         <p className="product-description mt-3">{product.description}</p>
 
-                        <div className="size-selector d-flex align-items-center ">
+                        <div className="size-selector d-flex align-items-center">
                             <div className="h">
                                 <span>Category:</span>
-                                <div className="size-options ">
+                                <div className="size-options">
                                     <span>{product.category}</span>
                                 </div>
                             </div>
@@ -181,8 +151,10 @@ const Productdetails = () => {
                     </div>
                 </div>
 
-                <Relatedproducts title="RELATED PRODUCTS" />
-                <Relatedproducts title="RECENTLY VIEWED PRODUCTS" />
+                {/* Pass the category to Relatedproducts */}
+                <Relatedproducts title="RELATED PRODUCTS" category={product.category} />
+                <Productitemcopy />
+                
             </div>
         </section>
     );

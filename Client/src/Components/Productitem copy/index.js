@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "@mui/material";
+import { FaAngleRight } from "react-icons/fa6";
 import Slider from "react-slick";
-import Productmodal from "../../../../Components/Productmodal";
 import axios from "axios";
+import Productmodal from "../Productmodal/index.js";
 
-const Relatedproducts = (props) => {
-    const [products, setProducts] = useState([]); // State for storing products
-    const [isopenproductmodal, setisopenproductmodal] = useState(false); // State for modal
-    const [selectedProduct, setSelectedProduct] = useState(null); // State for selected product
-    const token = sessionStorage.getItem("authToken"); // Fetch token from sessionStorage
-
+const Productitemcopy = () => {
     const productsslideropt = {
         dots: true,
         infinite: false,
@@ -17,56 +14,84 @@ const Relatedproducts = (props) => {
         slidesToScroll: 1,
     };
 
-    // Fetch products from API based on category
+    const [isopenproductmodal, setisopenproductmodal] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/product?category=${props.category}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Include token in the request headers
-                    },
-                });
-                setProducts(response.data); // Set fetched data to state
+                const token = sessionStorage.getItem("authToken");
+                if (!token) {
+                    setError("User not authenticated! Please sign in.");
+                    setLoading(false);
+                    return;
+                }
+
+                const headers = {
+                    Authorization: `Bearer ${token}`,
+                };
+
+                const response = await axios.get("http://localhost:4000/api/Product", { headers });
+                setProducts(response.data);
+                setLoading(false);
             } catch (error) {
                 console.error("Error fetching products:", error);
+                setError("Error fetching products! Please try again.");
+                setLoading(false);
             }
         };
 
-        if (props.category) {
-            fetchProducts();
-        }
-    }, [props.category, token]); // Depend on category and token
+        fetchProducts();
+    }, []);
 
     const viewProductDetails = (product) => {
-        setSelectedProduct(product); // Set the selected product
-        setisopenproductmodal(true); // Open modal
+        setSelectedProduct(product);
+        setisopenproductmodal(true);
     };
 
-    const closeProductModal = () => {
-        setisopenproductmodal(false); // Close modal
+    const closeProductmodal = () => {
+        setisopenproductmodal(false);
+        setSelectedProduct(null);
     };
 
     const handleAddToCart = (product) => {
         // Redirect to the product details page with the token
-        const productUrl = `/product/${product._id}?token=${sessionStorage.getItem("authToken")}`;
+        const token = sessionStorage.getItem("authToken");
+        const productUrl = `/product/${product._id}?token=${token}`;
         window.location.href = productUrl; // Redirects the user to the product details page
     };
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
     return (
-        <section className="homeproductss">
+        <section className="homeproducts">
             <div className="container">
                 <div className="row">
-                    <div className="col-md-12 productrows mt-3">
+                    
+                    <div className="col-md-12 productrow">
                         <div className="d-flex align-items-center">
                             <div className="info w-75">
-                                <h4 className="mb-0 hd">{props.title}</h4>
+                                <h3 className="mb-0 hd">BEST SELLERS</h3>
+                                <p className="text-light txt-sml mb-0">
+                                    Do not miss the current offers until the end of March
+                                </p>
                             </div>
+                            <Button className="viewallbtn ml-auto">
+                                View all <FaAngleRight />
+                            </Button>
                         </div>
-
                         <div className="product_row">
                             <Slider {...productsslideropt}>
                                 {products.map((product) => (
-                                    <div className="item productitem" key={product.id}>
+                                    <div className="item productitem" key={product._id}>
                                         <div className="imgwrapper">
                                             <img
                                                 src={product.images?.[0]?.[0] || "fallback_image_url"} // Fallback image if none exists
@@ -82,15 +107,10 @@ const Relatedproducts = (props) => {
                                                 </a>
                                             </h3>
                                             <div className="productmeta">
-                                                <div className="avail">
-                                                    {product.inStock ? "In-Stock" : "Out of Stock"}
-                                                </div>
+                                                <div className="avail">In-Stock</div>
                                             </div>
                                             <div className="price">
                                                 <span className="original-price">${product.price}</span>
-                                                {product.discountedPrice && (
-                                                    <span className="discounted-price">${product.discountedPrice}</span>
-                                                )}
                                             </div>
                                             <button
                                                 className="add-to-cart"
@@ -106,15 +126,14 @@ const Relatedproducts = (props) => {
                     </div>
                 </div>
             </div>
-
-            {isopenproductmodal && (
+            {isopenproductmodal && selectedProduct && (
                 <Productmodal
-                    closeProductmodal={closeProductModal}
-                    product={selectedProduct} // Pass selected product details
+                    closeProductmodal={closeProductmodal}
+                    productData={selectedProduct}
                 />
             )}
         </section>
     );
 };
 
-export default Relatedproducts;
+export default Productitemcopy;

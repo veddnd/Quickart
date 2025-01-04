@@ -7,23 +7,35 @@ const {Product} = require('../models/products.js');
 
 router.get("/", async (req, res) => {
     try {
-        const { minPrice, maxPrice, categories, brands } = req.query;
+        const { minPrice, maxPrice, categories, brands, category } = req.query;
         // Convert query parameters to appropriate formats
         const min = Number(minPrice) || 0; // Default to 0
         const max = Number(maxPrice) || 600000; // Default to no upper limit
         // Convert `categories` and `brands` to arrays if provided
         const categoryArray = categories ? categories.split(",") : [];
         const brandArray = brands ? brands.split(",") : [];
+
         // Build the query object
         const query = {
             price: { $gte: min, $lte: max },
         };
-        if (categoryArray.length > 0) {
-            query.category = { $in: categoryArray };
+
+        // If a category is provided, filter by category
+        if (category) {
+            query.category = category;  // Filter by specific category if provided
+        } else {
+            // If categoryArray is provided, filter by multiple categories
+            if (categoryArray.length > 0) {
+                query.category = { $in: categoryArray };
+            }
         }
+
+        // If brandArray is provided, filter by multiple brands
         if (brandArray.length > 0) {
             query.brand = { $in: brandArray };
         }
+
+        // Fetch products based on the constructed query
         const products = await Product.find(query);
         res.status(200).json(products);
     } catch (error) {
@@ -31,7 +43,6 @@ router.get("/", async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
-
 
 // create
 router.post('/create', async (req, res) => {
