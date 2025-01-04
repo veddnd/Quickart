@@ -1,0 +1,1736 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+}
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
+
+.text-light{color:#8b8888 !important;}
+.txt-sml{font-size: 14px;}
+/* Top Strip */
+.top-strip {
+  background-color: #500066;
+  /* Blue background */
+  color: white;
+  /* White text color */
+  text-align: center;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.top-strip p {
+  margin: 0;
+}
+
+/* Header Wrapper */
+.headerWrapper {
+  background-color: #f8f9fa;
+  /* Light background */
+  border-bottom: 1px solid #e0e0e0;
+  /* Subtle border */
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.logoWrapper img {
+  width: 160px;
+  /* Larger logo */
+  height: auto;
+}
+
+/* Center Section: Location + Search */
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+/* Location Dropdown */
+/* Country Dropdown Container */
+.countryDrop {
+  display: flex;
+  background-color: #ffffff;
+  /* White background */
+  border: 1px solid #ddd;
+  /* Light gray border */
+  border-radius: 6px;
+  /* Rounded corners */
+  padding: 8px 12px;
+  /* Padding for content */
+  color: #333;
+  /* Default text color */
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Light shadow */
+  transition: all 0.3s ease-in-out;
+  /* Smooth transitions */
+}
+
+/* Modal Wrapper */
+.locationmodel .MuiPaper-elevation {
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+  text-align: center;
+  margin: auto;
+  background-color: #ffffff;
+}
+
+/* Modal Title */
+.locationmodel h4 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333333;
+}
+
+.locationmodel h6 p {
+  font-size: 1rem;
+  color: #666666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Search Bar Container */
+.locationmodel .headersearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  overflow: hidden;
+  width: 100%;
+  margin: 10px auto 20px auto;
+  max-width: 400px;
+}
+
+
+.locationmodel.headersearch input {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+}
+
+.locationmodel.headersearch input::placeholder {
+  color: #999999;
+  font-size: 0.9rem;
+}
+
+.locationmodel.headersearch button {
+  background-color: #500066;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.locationmodel.headersearch button:hover {
+  background-color: #7c40ae;
+}
+
+/* Country List */
+.countrylist {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 1px;
+  padding: 0;
+}
+
+.countrylist li {
+  list-style: none;
+  width: 100%;
+  text-align: center;
+
+}
+
+.countrylist li Button {
+  width: 100%;
+  max-width: 400px;
+  color: #333333;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  padding: 5 px 0;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.countrylist li Button:hover {
+  background-color: #500066;
+  color: white;
+  transform: scale(1.03);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Additional Modal Spacing */
+.MuiDialogContent-root {
+  padding: 20px 30px !important;
+}
+
+.MuiDialogActions-root {
+  padding: 10px 20px !important;
+}
+
+/* Close Button Styling */
+.locationmodel .MuiIconButton-root {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #666666;
+  transition: color 0.3s ease;
+}
+
+.locationmodel .MuiIconButton-root:hover {
+  color: #500066;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .locationmodel .MuiPaper-elevation {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .headersearch {
+    max-width: 100%;
+  }
+
+  .countrylist li Button {
+    font-size: 1rem;
+  }
+}
+
+/* Hover and Active States */
+.countryDrop:hover {
+  background-color: #f1f1f1;
+  /* Light gray background on hover */
+  border-color: #bbb;
+  /* Slightly darker border */
+}
+
+.countryDrop:active {
+  transform: scale(0.98);
+  /* Small scale effect when clicked */
+}
+
+/* Content Wrapper */
+.info {
+  display: flex;
+  flex-direction: column;
+  color: #333;
+  /* Text color */
+  gap: 3px;
+  /* Spacing between label and name */
+}
+
+/* Label Styling */
+.info .label {
+  font-size: 12px;
+  /* Smaller font size for label */
+  color: #777;
+  /* Lighter gray for label */
+  text-transform: uppercase;
+  /* Uppercase for emphasis */
+  font-weight: 500;
+  /* Medium weight */
+}
+
+/* Name Styling */
+.info .name {
+  font-size: 14px;
+  /* Slightly larger font for location name */
+  font-weight: bold;
+  /* Bold font for emphasis */
+  color: #333;
+  /* Darker text color */
+}
+
+/* Icon Styling */
+.ml-auto {
+  margin-left: auto;
+  /* Push the icon to the right */
+  color: #666;
+  /* Light gray icon */
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Rotate the icon slightly on hover */
+.countryDrop:hover .ml-auto {
+  transform: rotate(180deg);
+}
+
+
+/* Search Bar */
+.headersearch {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 500px;
+}
+
+.headersearch input {
+  flex-grow: 1;
+  border: none;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.headersearch input:focus {
+  outline: none;
+}
+
+.headersearch button {
+  background-color: #440066;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.headersearch button:hover {
+  background-color: #7c40ae;
+}
+
+/* Right Section: Icons */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-icons .icon {
+  color: #333;
+  cursor: pointer;
+}
+
+.header-icons .icon:hover {
+  color: #6f42c1;
+}
+
+/* Cart Info */
+.cart-info {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Price Summary */
+.price-summary {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .header-center {
+    gap: 10px;
+  }
+
+  .headersearch {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .header-center {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .headersearch {
+    width: 100%;
+  }
+
+  .logoWrapper img {
+    width: 120px;
+    /* Smaller logo */
+  }
+}
+
+.signinb{
+  border-radius: 0px !important;
+  background-color: #500066 !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+  border: none !important;
+  width:80px !important;
+  height:35px !important;
+}
+.signinb:hover{
+  background-color: #713680!important;
+}
+
+@media (max-width: 480px) {
+  .top-strip p {
+    font-size: 12px;
+  }
+
+  .header-icons {
+    gap: 10px;
+  }
+
+  .cart-badge {
+    top: -3px;
+    right: -5px;
+  }
+}
+
+
+/* Navigation Links Container */
+.col-sm-9-navpart2 {
+  display: flex;
+  margin-left: 10px;
+  justify-content: flex-end;
+  /* Align navigation to the right */
+  align-items: center;
+}
+
+/* Navigation List */
+.col-sm-9-navpart2 ul {
+  display: flex;
+  list-style: none;
+  /* Remove default bullet points */
+  margin-left: 150px;
+  padding: 0;
+  gap: 20px;
+  /* Add space between the links */
+  align-items: center;
+  /* Ensure alignment of list items */
+}
+
+/* Navigation Items */
+.col-sm-9-navpart2 ul li {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  /* Capitalize the text */
+  transition: all 0.3s ease;
+  /* Smooth hover effects */
+  display: flex;
+  align-items: center;
+  /* Align icon and text vertically */
+}
+
+/* Navigation Links */
+.col-sm-9-navpart2 ul li a {
+  text-decoration: none;
+  /* Remove underline */
+  color: #333;
+  /* Default link color - dark gray */
+  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 5px 5px;
+  /* Add padding for better click area */
+  display: flex;
+  align-items: center;
+  /* Ensure icon and text align */
+  gap: 5px;
+  /* Space between icon and text */
+}
+
+/* Hover Effect for Links */
+.col-sm-9-navpart2 ul li a:hover {
+  color: #500066;
+  /* Purple color on hover */
+  transform: translateY(-2px);
+  /* Slight lift effect */
+  border-bottom: 2px solid #500066;
+  /* Bottom border on hover */
+}
+
+/* Icon Styling */
+.col-sm-9-navpart2 ul li a svg {
+  font-size: 16px;
+  /* Adjust icon size */
+  vertical-align: middle;
+  /* Align icon with text */
+}
+
+/* Active Link State (Optional) */
+.col-sm-9-navpart2 ul li a.active {
+  color: #500066;
+  font-weight: bold;
+  border-bottom: 2px solid #500066;
+}
+
+nav.navpart2 ul li.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  min-width: 200px;
+  background: #fff;
+}
+
+/* Hide the submenu by default */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  /* Position it below the link */
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  /* Adjust width as needed */
+  padding: 10px;
+  z-index: 1;
+  margin-top: 5px;
+  /* Add a small gap between link and submenu */
+}
+
+/* submenu */
+.submenu a {
+  display: block;
+  padding: 8px 10px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.submenu a:hover {
+  background-color: #f1f1f1;
+  color: #007bff;
+}
+
+/* Show submenu on hover */
+.list-inline-item:hover .submenu {
+  display: block;
+}
+
+/* Optional: hover effect for the main category links */
+.list-inline-item:hover>a {
+  color: #007bff;
+  /* Change text color when hovered */
+}
+
+/* Ensure submenu stays aligned */
+.list-inline-item {
+  position: relative;
+}
+
+.submenu .submenu {
+  left: 100%;
+  /* Align submenus horizontally */
+  top: 0;
+}
+
+/* submenu */
+
+
+
+/* Styling for mobile responsiveness */
+@media (max-width: 768px) {
+  .col-sm-9-navpart2 {
+    display: block;
+    text-align: center;
+  }
+
+  .list-inline {
+    display: block;
+  }
+
+  .list-inline-item {
+    margin: 10px 0;
+  }
+
+  .submenu {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  .col-sm-9-navpart2 ul {
+    flex-direction: column;
+    /* Stack links vertically */
+    align-items: center;
+    /* Center-align links */
+    gap: 10px;
+    /* Reduce space between links */
+  }
+
+  .col-sm-9-navpart2 {
+    justify-content: center;
+    /* Center-align navigation container */
+  }
+}
+
+/* Close Button Styling */
+.close_ {
+  background-color: transparent;
+  /* Transparent background */
+  color: #333 !important;
+  /* Dark color for the icon */
+  border: none;
+  /* No border */
+  font-size: 1.5rem;
+  /* Larger icon size */
+  cursor: pointer;
+  /* Pointer cursor for better UX */
+  display: flex;
+  /* Center the icon */
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  /* Smooth transitions */
+  position: absolute !important;
+  /* Positioning for modal */
+  top: 10px;
+  /* Distance from the top */
+  right: 10px;
+  /* Distance from the right */
+  border-radius: 50%;
+  /* Circular button */
+  padding: 5px;
+  /* Small padding for touch */
+}
+
+.close_:hover {
+  background-color: #f1f1f1;
+  /* Light gray background on hover */
+  color: #500066;
+  /* Purple color on hover */
+  transform: scale(1.1);
+  /* Slight zoom effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Shadow on hover */
+}
+
+.sidebar-container {
+  position: relative;
+}
+
+.allcattab {
+  background-color: #500066;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  /* Reduced padding */
+  font-size: 14px;
+  /* Reduced font size */
+  width: auto;
+  /* Adjust width to fit content */
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  /* Rounded corners */
+  transition: background-color 0.3s, color 0.3s;
+  /* Smooth color change */
+  margin-top: 5px;
+}
+
+.allcattab.active {
+  background-color: white;
+  color: rgb(9, 7, 9);
+  border: 1px solid rgb(12, 10, 12);
+  /* Add border for contrast */
+}
+
+/* Sidebar container */
+.sidebar-container {
+  position: relative;
+  /* Ensure proper positioning */
+  z-index: 10;
+  /* High z-index for dropdown */
+}
+
+/* Sidebar menu (dropdown content) */
+.sidebar-menu {
+  position: absolute;
+  /* Ensures it appears above other elements */
+  top: 50px;
+  /* Adjust as needed to align correctly */
+  left: 0;
+  background-color: white;
+  /* Dropdown background */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  /* Ensure it overlaps other elements */
+  width: 250px;
+  /* Adjust width as needed */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Ensure submenu inside the sidebar has higher priority */
+.sidebar-menu.submenu {
+  position: relative;
+  z-index: 1;
+  display: none;
+  /* Hidden by default */
+  position: absolute;
+  top: 0;
+  left: 100%;
+  /* Position to the right of the parent item */
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+/* Home body slider adjustments (to avoid overlap issues) */
+.home-slider {
+  position: relative;
+  /* Ensure it doesn't overlap */
+  z-index: 1;
+  /* Lower than the sidebar */
+}
+
+
+/* Menu list styles */
+.sidebar-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  color: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu li {
+  position: relative;
+  /* For submenu positioning */
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu li .name {
+  color: #500066;
+  /* Change text color to black */
+  text-decoration: none;
+  /* Remove underline */
+  display: block;
+  /* Ensure block-level styling */
+  /* Add padding for better spacing */
+}
+
+.sidebar-menu .submenu {
+  display: none;
+  /* Hidden by default */
+  position: absolute;
+  top: 0;
+  left: 100%;
+  /* Position to the right of the parent item */
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 1000;
+  color: #333;
+}
+
+.sidebar-menu li:hover .submenu {
+  display: block;
+  /* Show submenu on hover */
+}
+
+.submenu a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #333;
+  white-space: nowrap;
+  /* Prevent text wrapping */
+}
+
+.sidebar-menu .submenu a {
+  color: black;
+  /* Ensure submenu text is black too */
+  font-size: 14px;
+  padding: 8px;
+}
+
+.submenu a:hover {
+  background-color: #ddd;
+  /* Highlight submenu item on hover */
+}
+
+
+/* Homebanner container */
+.homebanner {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: visible; /* Allow slides to overflow */
+}
+
+.homebanner .item {
+  padding: 0 10px; /* Add spacing between slides */
+}
+
+.homebanner .item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Maintain aspect ratio */
+  border-radius: 8px; /* Optional: Rounded corners for a polished look */
+}
+
+/* Slider dots (if enabled) */
+.slick-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slick-dots li {
+  margin: 0 5px;
+}
+
+.slick-dots button {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.slick-dots .slick-active button {
+  background-color: #333;
+  /* Active dot color */
+}
+
+/* Arrows */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  outline: none;
+}
+
+.slick-prev {
+  left: 10px;
+}
+
+.slick-next {
+  right: 10px;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Darker on hover */
+}
+
+.slick-prev:before,
+.slick-next:before {
+  content: '';
+  /* Hide default slick arrow icons */
+}
+
+/* Make the banner responsive */
+@media (max-width: 768px) {
+
+  .slick-prev,
+  .slick-next {
+    width: 25px;
+    height: 25px;
+  }
+
+  .slick-dots button {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+.homeproducts {
+  width: 100%;
+  padding: 22px 0px;
+}
+
+.homeproducts .newarr{
+  width: 100%;
+  padding: 15px 0px;
+
+}
+.homeproducts .newarr .hd{
+  font-size: 25px !important;
+  font-weight: 600 !important;
+}
+
+.homeproducts .banner {
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 481px;
+
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.productrow .hd{
+  font-size: 20px !important;
+  font-weight: 600 !important;
+
+}
+
+.viewallbtn {
+  display: inline-flex !important;            /* Align text and icon in a row */            /* Vertically align the text and icon */
+              /* Add padding for the button */
+  background-color: #500066 ;       /* Set the background color of the button */
+  color: #500066 !important;                  /* Violet color for the text */
+  font-size: 14px !important;                 /* Font size */
+  font-weight: 200 !important;                /* Optional: Make the text bold */
+  cursor: pointer;                /* Change cursor on hover */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+}
+
+.viewallbtn:hover {
+  background-color: #eaeaea;      /* Darker shade on hover */
+  transform: scale(1.05);
+  color: #500066;           /* Slightly increase size on hover */
+}
+
+.viewallbtn svg {
+  margin-left: 4px;                /* Space between text and icon */
+  font-size: 20px;                 /* Size of the icon */
+}
+/* productitem */
+.productitem {
+  border: 1px solid #ddd; /* Border for the product item */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Spacing inside the product item */
+  background-color: #fff; /* White background */
+  text-align: center; /* Center align content */
+  margin: 10px; /* Space between items */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hover effects */
+}
+
+.item.productitem:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+}
+
+.imgwrapper {
+  position: relative; /* To position children like labels */
+  margin-bottom: 15px; /* Space below the image */
+}
+
+.imgwrapper img {
+  border-radius: 8px; /* Rounded corners for the image */
+  max-width: 100%; /* Ensure the image is responsive */
+  display: block; /* Remove default inline-block spacing */
+}
+
+.content {
+  padding: 10px 0; /* Padding for content section */
+}
+
+h3.producttitle {
+  font-size: 16px; /* Font size for product title */
+  font-weight: bold; /* Bold text for title */
+  color: #333; /* Dark text color */
+  margin: 10px 0; /* Spacing around the title */
+}
+
+h3.producttitle a {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit;  /* Inherit color from the parent */
+}
+
+h3.producttitle a:hover {
+  color: #8c13c1; /* Change color on hover */
+}
+
+.productmeta {
+  font-size: 14px; /* Slightly smaller text for meta info */
+  margin: 10px 0; /* Spacing below meta info */
+}
+
+.avail {
+  color: #28a745; /* Green color for 'In-Stock' */
+  font-weight: bold; /* Bold text for emphasis */
+}
+
+.price {
+  margin: 10px 0; /* Spacing above and below price */
+  font-size: 14px; /* Font size for price */
+}
+
+.original-price {
+  text-decoration: line-through; /* Strikethrough for original price */
+  color: #888; /* Gray color for original price */
+  margin-right: 5px; /* Space between original and discounted prices */
+}
+
+.discounted-price {
+  color: #ff0000; /* Red color for discounted price */
+  font-weight: bold; /* Bold for emphasis */
+}
+
+.add-to-cart {
+  display: inline-block; /* Button styling */
+  background-color: #500066; /* Blue background */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  padding: 10px 15px; /* Button padding */
+  border-radius: 5px; /* Rounded button corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Font size for button text */
+  margin-top: 10px; /* Space above the button */
+  transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+.add-to-cart:hover {
+  background-color: #bf85d2 !important; /* Darker blue on hover */
+}
+.add-to-cart svg{
+  margin-right: 10px !important;
+}
+
+.imgwrapper img {
+  width: 100px;
+  height:170px;
+  object-fit: cover;
+  margin :10px;
+}
+/* homeicons style */
+.homeicons .row {
+  display: flex;
+  justify-content: center; /* Centers icons horizontally */
+  align-items: center; /* Aligns icons vertically if needed */
+  margin-bottom: 40px;
+}
+.iconbox {
+  text-align: center;
+  /* Spacing between icons */
+}
+
+.iconbox img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%; /* Rounded corners for the icons */
+  padding :10px;
+  /* margin-top:10px;
+  margin-left:10px;
+  margin-bottom: 5px; */
+}
+
+.iconbox :hover{
+  transform: scale(1.09); /* Slightly enlarge icon on hover */
+}
+.homeicons .inf .he{
+  margin-top: 40px;
+  font-size: 40px;
+}
+
+.homecat{
+  padding: 10px;
+}
+homecat .swiper .item{
+  margin-right: 30px;
+
+}
+/* .homecat .item{
+  width: 110px;
+  height:110px;
+} */
+.homecat {
+  background-color: #fff; /* Light background for contrast */
+  padding: 20px 0;
+}
+.homecat .newarr .hd{
+  font-size: 25px !important;
+  font-weight: 600 !important;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mySwiper {
+  padding: 10px 0;
+}
+
+.item {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+  text-transform: capitalize;
+}
+
+/* Minimalist navigation styling */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #333 !important; /* Neutral color for arrows */
+    background-color: transparent; /* No background for simplicity */
+    font-size: 11px ; /* Standard arrow size */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+/* Position arrows closer to the content */
+.swiper-button-next {
+    right: 10px;
+}
+
+.swiper-button-prev {
+    left: 10px;
+}
+
+/* Hover effect */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    color: #555; /* Slightly darken on hover */
+}
+
+.productmodal .MuiPaper-elevation {
+  padding: 25px ;
+  position: relative;
+}
+
+.product-modal-content {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.close-button {
+  position: absolute !important;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #500066 !important;
+}
+/* produtmodal */
+.product-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 11px;
+  color: #888;
+  margin-top: 8px;
+}
+
+.product-image img {
+  width: 40%;
+  max-width: 300px;
+  margin: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.product-pricing {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.product-price {
+  font-size: 24px;
+  color: #e63946;
+  font-weight: bold;
+}
+
+.product-stock {
+  font-size: 14px;
+  color: #28a745;
+  margin-left: 6px;
+  font-weight: bold;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #555;
+  margin: 15px 0;
+  margin-bottom: 20px;
+}
+.productdetails .product-description{
+  margin-bottom: 15px;
+}
+
+.product-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.add-to-cart {
+  background-color: #500066 !important;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.additional-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+
+
+.product-category {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #888;
+}
+
+
+.quantitydrop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left:0px !important;
+}
+
+.quantitydrop input {
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.quantitydrop input:focus {
+  border-color: #83608c !important;
+  box-shadow: 0 0 5px rgba(148, 47, 199, 0.5);
+}
+
+.quantitydrop button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #e6bdf1;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quantitydrop button:hover {
+  background-color: #a23dd0;
+}
+
+.quantitydrop button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+/* productlistingpage */
+.product_Listing_Page .productListing {
+  padding: 35px 0px;
+}
+
+.product_Listing_Page .productListing {
+  gap: 20px;
+}
+
+.product_Listing_Page .productListing .sidebar {
+  width: 20%;
+  flex: 0 0 20%;
+}
+.product_Listing_Page .productListing .sidebar .sticky{
+  position: sticky;
+  top: 20px;
+}
+
+.product_Listing_Page .productListing .sidebar .filterBox {
+  margin-bottom: 20px;
+}
+
+.product_Listing_Page .productListing .sidebar .filterBoxprice{
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.product_Listing_Page .productListing .sidebar .filterBox h6 {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.product_Listing_Page .productListing .sidebar .filterBoxprice h6 {
+  font-weight: 700;
+  margin-top: 30px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.product_Listing_Page .productListing .sidebar .scroll {
+  max-height: 250px; /* Limit the height to make it scrollable */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    padding-right: 10px;
+}
+
+.product_Listing_Page .productListing .sidebar .scroll::-webkit-scrollbar {
+  width: 5px !important; /* Width of the scrollbar */
+  height: 5px !important;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded edges for the scrollbar thumb */
+}
+
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color on hover */
+}
+
+.product_Listing_Page .productListing .sidebar .scroll ul{
+  list-style: none;
+  width: 100%;
+  padding-inline-start: 0px !important;
+}
+
+.product_Listing_Page .productListing .sidebar .scroll ul li {
+  list-style: none;
+  width: 100%;
+}
+
+.css-1umw9bq-MuiSvgIcon-root{
+  
+  width: 0.8em !important;
+  height: 0.7em !important;
+  font-size: 1.5rem !important;
+}
+
+.range-slider {
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 5px !important;
+  background: #ddd;
+  border-radius: 4px;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+}
+.pricerange{
+  font-size: 0.9rem;
+}
+
+.range-slider .range-slider__thumb {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  width: 1%;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #ae6bc0 !important;
+}
+
+.range-slider .range-slider__range {
+  position: absolute;
+  z-index: 1;
+  transform: translate(0, -50%);
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  background: #ae6bc0 !important;
+}
+.text-success {
+    color: #262526 !important;
+}
+
+.product_Listing_Page .productListing .sidebar img{
+  width: 100%;
+}
+
+/* content right */
+.showby{
+  width: 100%;
+  height: 50px;
+  background: #f7f8fd;
+  margin-top: 10px;
+}
+.css-1588512-MuiButtonBase-root-MuiButton-root {
+  margin-top: 0px !important;
+  font-size: 1.2rem !important;
+  min-width: 0px !important;
+  color: #500066 !important;
+  border-radius: 70px !important;
+  margin-left: 10px !important;
+  font-size: 15px !important;
+  margin-left: 0px !important;
+}
+
+.showbyfilter button {
+  min-width: auto !important;
+}
+.showbyfilter button svg{
+  color: #500066; opacity: 0.6;
+  margin-left: 5px !important;
+}
+
+.grid-layout .productitem {
+  width: 20%;
+  display: inline-block;
+  margin: 1%;
+  vertical-align: top;
+
+}
+.productitem{
+  height: 440px !important;
+}
+
+.original-price {
+  color: #888;
+  margin-right: 5px;
+  text-decoration: none!important;
+}
+
+.list-layout .productitem {
+  width: 100%;
+  height:200px !important;
+  display: flex;
+  margin: 10px 0;
+}
+
+.list-layout .imgwrapper {
+  width: 20%;
+  margin-right: 20px;
+}
+
+.list-layout .content {
+  width: 80%;
+}
+
+.compact-layout .productitem {
+  width: 0% !important;
+  margin: 1%;
+  display: inline-block;
+}
+
+.section{
+  padding:45px 0px;
+}
+.productdetails .hd{
+  font-size: 25px !important;
+}
+.css-i0l71t-MuiRating-root{
+  font-size: 1rem !important;
+}
+/* size selector of productdetails */
+/* Size Selector */
+.size-selector {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.size-selector span {
+  font-weight: 200;
+  font-size: smaller;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+
+.size-selector .h{
+  gap: 10px;
+  margin-right: 50px;
+  flex-wrap: wrap;
+  margin-top: 0px;
+}
+
+.size-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.size-btn:hover,
+.size-btn.active {
+  background-color: #500066;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.homeproductss .productrows .hd{
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  margin-bottom: 10px !important;
+}
+.homeproductss {
+  width: 100%;
+  padding: 2px 0px; 
+}
+
+
+/* cart page */
+.cartpage{
+  padding: 30px !important;
+}
+
+.cartpage .table thead{
+  background: #ececec !important;
+  overflow: hidden;
+  font-size: 14px;
+}
+.cartpage .table tbody{ 
+  font-size: 14px;
+}
+a:hover{
+  text-decoration: none;
+}
+.cartimgWrapper .imgWrapper{
+  width: 100px;
+  overflow: hidden;
+}
+.cartimgWrapper .info a:hover{
+  text-decoration: none;
+}
+.cartimgWrapper .info h6{color: #262526; font-weight:400; font-size: 14px;}
+.cartimgWrapper{
+  width: 280px;
+}
+.cartimgWrapper .info h6:hover{color: #500066 !important;}
+.remove svg{font-size: 25px;}
+
+.cartpage .quantitydrop button{zoom:75%;}
+.cartpage table th, .cartpage table td{vertical-align: middle;}
+.remove:hover svg{
+  color: #ff0000;
+}
+.carttotal{
+  border: 0px !important;
+  border-radius: 7 px !important;
+}
+.carttotal h4{font-size :18px; font-weight:600;border-bottom: 1px solid rgba(0,0,0,0.1); padding: 16px;}
+.text-red{color: red !important}
+/* signin page  */
+/* Ensure the section covers the entire viewport */
+
+.section.signinpage {
+  height: 100vh; /* Full viewport height */
+  display: flex; /* Center content */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  background-image: url('https://images.unsplash.com/photo-1596367407372-96cb88503db6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHdoaXRlJTIwYmFjZ3JvdW5kfGVufDB8fDB8fHww'); /* Replace with the actual image path */
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repetition */
+  color: white; /* Ensure text is visible on the image */
+}
+
+/* Optional: Styling for the container */
+.signinpage .box{
+  width:480px;
+  height:510px;
+  background:#fff;
+  color:#262526 !important;
+  margin:auto
+}
+.signinpage .box img{
+  width: 180px;
+  height: 80px;
+  position:relative;
+}
+.signinpage .box h2{
+  color:#262526;
+  font-size:22px;
+  font-weight: 600;
+}
+.signinpage .box form {padding: 10px 10px;}
+.sgnup{margin-left:0px !important;}
+.signinbtn{background: #824e90 !important; margin-top: 20px !important;color:#fff
+!important; margin:10px !important ; border-radius: 10px !important ; padding: 5px !important;}
+.signinbtn:hover{background: #b664cd !important ;width: 100% !important;}
+.frgtpas{
+  margin-top: 25px !important;
+  margin-bottom: 5px !important;
+}
+.frgtpas .pass{color: #500066;}
+.sclmdia svg{font-size: medium;}
+.signuppage .box{width: 500px; height: 580px;}
+.action-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px; 
+  text-align: center;
+  background-color: #500066 !important;
+}
+
+/* signindailog */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.dialog-box {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px !important;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-box h3 {
+  margin-bottom: 10px;
+}
+
+.dialog-box p {
+  margin-bottom: 20px;
+}
+
+.dialog-box button {
+  margin: 5px;
+}
+.bxc{
+  background-color: #500066;
+  border-color: #500066;
+}
+.bxc:hover{
+  background-color: #b664cd;
+  border-color: #b664cd;
+}
+/* icon ka drop down */
+.user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.user-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: none;
+  z-index: 1000;
+}
+
+.user-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  text-align: center !important;
+  padding: 5px;
+  width: 100px;
+  border: none;
+  text-transform: capitalize;
+}
+
+.dropdown-item:hover {
+  background: #c59fd0;
+}
+
