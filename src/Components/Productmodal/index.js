@@ -4,56 +4,51 @@ import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import Quantitybox from "../Quantitybox/index.js";
 
-
-const Productmodal = (props) => {
+const Productmodal = ({ closeProductmodal, productData }) => {
     return (
         <Dialog
             open={true}
             className="productmodal"
-            onClose={() => props.closeProductmodal()}
+            onClose={closeProductmodal}
         >
             <div className="product-modal-content">
-                {/* Close button */}
-                <Button
-                    className="close-button"
-                    onClick={() => props.closeProductmodal()}
-                >
+                <Button className="close-button" onClick={closeProductmodal}>
                     <MdClose />
                 </Button>
 
-                {/* Product details */}
-                
                 <div className="product-details">
                     {/* Product Title */}
-                    <h4 className="product-title mb-0">Prada Sunglasses </h4>
+                    <h4 className="product-title mb-0">{productData.name}</h4>
 
                     {/* Product Information */}
                     <div className="product-meta">
-                        <span className="product-review">★ 1 REVIEW</span>
-                        <span className="product-sku">SKU: VUYT31</span>
+                        <span className="product-review">★ {productData.rating} REVIEWS</span>
+                        <span className="product-sku">SKU: {productData._id}</span>
                     </div>
 
                     {/* Product Image */}
                     <div className="product-image">
                         <img
-                            src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3VuZ2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D"
-                            alt="Product"
+                            src={productData.images[0][0]}
+                            alt={productData.name}
                         />
-
                     </div>
 
                     {/* Product Pricing and Stock */}
                     <div className="product-pricing">
-                        <h2 className="product-price">$1.44</h2>
-                        <span className="product-stock in-stock ">IN STOCK</span>
+                        <h2 className="product-price">${productData.price}</h2>
+                        <span
+                            className={`product-stock ${
+                                productData.countinstock > 0 ? "in-stock" : "out-of-stock"
+                            }`}
+                        >
+                            {productData.countinstock > 0 ? "IN STOCK" : "OUT OF STOCK"}
+                        </span>
                     </div>
 
                     {/* Product Description */}
                     <p className="product-description">
-                        Designed for modern sophistication, these shades feature a sleek frame an
-                        d high-quality polarized lenses to protect your eyes while enhancing your
-                        vision. Whether you're strolling on the beach or driving through the city, the
-                        timeless elegance of Prada ensures you stand out in every setting.
+                        {productData.description}
                     </p>
 
                     {/* Quantity and Add to Cart */}
@@ -61,11 +56,9 @@ const Productmodal = (props) => {
 
                     {/* Category */}
                     <div className="product-category">
-                        <span>Category: Sunglasses</span>
+                        <span>Category: {productData.category.name}</span>
                     </div>
                 </div>
-
-
             </div>
         </Dialog>
     );

@@ -1,37 +1,58 @@
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import sports from "../../assests/images/sports.jpg";
-import party from "../../assests/images/party.jpg";
-import traditonal from "../../assests/images/traditonal.png";
-import ca from "../../assests/images/ca.png";
-import et from "../../assests/images/et.png";
-import f from "../../assests/images/f.png";
-import wedding from "../../assests/images/wedding .jpg";
-import React from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import SignInDialog from "../SignInDialog/index.js";
 
 const Homecat = () => {
-    const [items, setItems] = useState([
-            { image: sports, name: "Sports Wear" },
-            { image: traditonal, name: "Traditional Wear" },
-            { image: party, name: "Party Wear" },
-            { image: ca, name: "Casual Wear" },
-            { image: wedding, name: "wedding Wear" },
-            { image: et, name: "Ethnic Wear" },
-            { image: f, name: "Formal Wear" },
-            { image: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Orange_Fruit.jpg", name: "Workout Wear" },
-            { image: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Orange_Fruit.jpg", name: "Night Wear" },
-            { image: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Orange_Fruit.jpg", name: "Maternity Wear" },
-            { image: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Orange_Fruit.jpg", name: "Street Wear" },
-            { image: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Orange_Fruit.jpg", name: "Festival Wear" },
-            { image: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Orange_Fruit.jpg", name: "Office Wear" },
-            { image: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Orange_Fruit.jpg", name: "Travel Wear" },
-    ]);
+    const [items, setItems] = useState([]);
+    const [showDialog, setShowDialog] = useState(false);
+    const navigate = useNavigate(); // Initialize useNavigate
+
+    useEffect(() => {
+        const token = sessionStorage.getItem("authToken");
+
+        if (!token) {
+            setShowDialog(true);
+            return;
+        }
+
+        axios
+            .get("http://localhost:4000/api/category", {
+                headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((response) => {
+                const categories = response.data.map((category) => ({
+                    image: category.images[0],
+                    name: category.name,
+                    color: category.color || "#eddcf2",
+                }));
+                setItems(categories);
+            })
+            .catch((error) => {
+                console.error("Error fetching categories:", error);
+            });
+    }, []);
+
+    const handleCategoryClick = () => {
+        navigate("/cat"); // Navigate to the generic /cat route
+    };
+
+    const handleSignIn = () => {
+        window.location.href = "/signin";
+    };
 
     return (
         <div className="homecat" style={{ padding: "20px 0" }}>
+            <SignInDialog
+                open={showDialog}
+                onClose={() => setShowDialog(false)}
+                onSignIn={handleSignIn}
+            />
+
             <div className="container">
                 <div className="newarr text-center">
                     <div className="info w-300">
@@ -43,9 +64,9 @@ const Homecat = () => {
                 </div>
 
                 <Swiper
-                    spaceBetween={15} // Adjust gap between slides
-                    slidesPerView={7} // Number of visible slides
-                    navigation={true} // Enable navigation arrows
+                    spaceBetween={15}
+                    slidesPerView={7}
+                    navigation={true}
                     modules={[Navigation]}
                     breakpoints={{
                         640: { slidesPerView: 2 },
@@ -59,7 +80,7 @@ const Homecat = () => {
                             <div
                                 className="item text-center"
                                 style={{
-                                    background: "#eddcf2",
+                                    background: item.color,
                                     borderRadius: "500px",
                                     width: "150px",
                                     height: "150px",
@@ -68,9 +89,12 @@ const Homecat = () => {
                                     justifyContent: "center",
                                     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                                     marginTop: "20px",
+                                    cursor: "pointer", // Add pointer cursor
                                 }}
+                                onClick={handleCategoryClick} // Navigate to /cat on click
                             >
-                                <img src={item.image}
+                                <img
+                                    src={item.image}
                                     alt={item.name}
                                     style={{
                                         width: "80%",

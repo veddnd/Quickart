@@ -33,86 +33,64 @@ const Sidebar = () => {
                 <div className="sidebar-menu shadow">
                     <ul>
                         <li>
-                            <Link to="/">
+                            <Link to="/cat">
                                 <Button className="name">Men</Button>
                             </Link>
                             <div className="submenu">
-                                <Link to="/"><Button className="name">T-Shirts</Button></Link>
-                                <Link to="/"><Button className="name">Shirts</Button></Link>
-                                <Link to="/"><Button className="name">Sweaters</Button></Link>
-                                <Link to="/"><Button className="name">Pants</Button></Link>
-                                <Link to="/"><Button className="name">Jackets</Button></Link>
-                                <Link to="/"><Button className="name">Accessories</Button></Link>
+                                <Link to="/cat"><Button className="name">T-Shirts</Button></Link>
+                                <Link to="/cat"><Button className="name">Shirts</Button></Link>
+                                <Link to="/cat"><Button className="name">Sweaters</Button></Link>
+                                <Link to="/cat"><Button className="name">Pants</Button></Link>
+                                <Link to="/cat"><Button className="name">Jackets</Button></Link>
+                                
                             </div>
                         </li>
                         <li>
-                            <Link to="/">
+                            <Link to="/cat">
                                 <Button className="name">Women</Button>
                             </Link>
                             <div className="submenu">
-                                <Link to="/"><Button className="name">Dresses</Button></Link>
-                                <Link to="/"><Button className="name">Tops</Button></Link>
-                                <Link to="/"><Button className="name">Skirts</Button></Link>
-                                <Link to="/"><Button className="name">Pants</Button></Link>
-                                <Link to="/"><Button className="name">Jackets</Button></Link>
-                                <Link to="/"><Button className="name">Accessories</Button></Link>
+                                <Link to="/cat"><Button className="name">Dresses</Button></Link>
+                                <Link to="/cat"><Button className="name">Tops</Button></Link>
+                                <Link to="/cat"><Button className="name">Skirts</Button></Link>
+                                <Link to="/cat"><Button className="name">Pants</Button></Link>
+                                <Link to="/cat"><Button className="name">Jackets</Button></Link>
+                                
                             </div>
                         </li>
                         <li>
-                            <Link to="/">
-                                <Button className="name">Beauty</Button>
+                            <Link to="/cat">
+                                <Button className="name">Sports & Activewear</Button>
                             </Link>
                             <div className="submenu">
-                                <Link to="/"><Button className="name">Makeup</Button></Link>
-                                <Link to="/"><Button className="name">Skincare</Button></Link>
-                                <Link to="/"><Button className="name">Haircare</Button></Link>
-                                <Link to="/"><Button className="name">Fragrances</Button></Link>
-                                <Link to="/"><Button className="name">Tools</Button></Link>
+                                <Link to="/cat"><Button className="name">Tracksuits</Button></Link>
+                                <Link to="/cat"><Button className="name">Gym Wear</Button></Link>
+                                <Link to="/cat"><Button className="name">Sports Shoes</Button></Link>
+                                <Link to="/cat"><Button className="name">Jerseys</Button></Link>
+                                
                             </div>
                         </li>
                         <li>
-                            <Link to="/">
-                                <Button className="name">Watches</Button>
-                            </Link>
-                            <div className="submenu">
-                                <Link to="/"><Button className="name">Men's Watches</Button></Link>
-                                <Link to="/"><Button className="name">Women's Watches</Button></Link>
-                                <Link to="/"><Button className="name">Smartwatches</Button></Link>
-                                <Link to="/"><Button className="name">Luxury Watches</Button></Link>
-                            </div>
-                        </li>
-                        <li>
-                            <Link to="/">
+                            <Link to="/cat">
                                 <Button className="name">Kids</Button>
                             </Link>
                             <div className="submenu">
-                                <Link to="/"><Button className="name">Toys</Button></Link>
-                                <Link to="/"><Button className="name">Clothing</Button></Link>
-                                <Link to="/"><Button className="name">Shoes</Button></Link>
-                                <Link to="/"><Button className="name">Books</Button></Link>
-                                <Link to="/"><Button className="name">Accessories</Button></Link>
+                                <Link to="/cat"><Button className="name">T-Shirts</Button></Link>
+                                <Link to="/cat"><Button className="name">Dresses</Button></Link>
+                                <Link to="/cat"><Button className="name">Shorts</Button></Link>
+                                <Link to="/cat"><Button className="name">Pants</Button></Link>
+                                <Link to="/cat"><Button className="name">Outerwear</Button></Link>
+                                
                             </div>
                         </li>
-                        <li>
-                            <Link to="/">
-                                <Button className="name">Gift</Button>
-                            </Link>
-                            <div className="submenu">
-                                <Link to="/"><Button className="name">For Him</Button></Link>
-                                <Link to="/"><Button className="name">For Her</Button></Link>
-                                <Link to="/"><Button className="name">For Kids</Button></Link>
-                                <Link to="/"><Button className="name">Personalized Gifts</Button></Link>
-                                <Link to="/"><Button className="name">Gift Cards</Button></Link>
-                            </div>
-                        </li>
+                        
                     </ul>
-
-
                 </div>
             )}
         </div>
     );
 };
+
 
 
 
@@ -131,58 +109,74 @@ const Navigation = () => {
                         </div>
 
                     </div>
-                    <div className=' col-sm-9-navpart2 d-flex align-items-center'>
-                        <ul className='list list-inline  '>
-                            <li className='list-inline-item'><Link to="/"> <IoHome /> Home</Link>
+
+                    <div className='col-sm-9-navpart2 d-flex align-items-center'>
+                        <ul className='list list-inline'>
+                            <li className='list-inline-item'>
+                                <Link to="/"> <IoHome /> Home</Link>
                                 <div className="submenu shadow">
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
+                                    <Link to="/cat"> Men's Clothing</Link>
+                                    <Link to="/cat"> Women's Clothing</Link>
+                                    <Link to="/cat"> Kids' Wear</Link>
+                                    <Link to="/cat"> Activewear</Link>
+                                    <Link to="/cat"> Formal Wear</Link>
+                                    <Link to="/cat"> Accessories</Link>
                                 </div>
                             </li>
-                            <li className='list-inline-item'><Link to="/"> <RiTShirtFill /> Fashion</Link>
+                            <li className='list-inline-item'>
+                                <Link to="/"> <RiTShirtFill /> Tops & T-Shirts</Link>
                                 <div className="submenu shadow">
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                </div></li>
-                            <li className='list-inline-item'><Link to="/"> <FaMobile /> Electronics</Link>
+                                    <Link to="/cat"> Casual T-Shirts</Link>
+                                    <Link to="/cat"> Polo Shirts</Link>
+                                    <Link to="/cat"> Tank Tops</Link>
+                                    <Link to="/cat"> Graphic Tees</Link>
+                                    <Link to="/cat"> Crop Tops</Link>
+                                    <Link to="/cat"> Long Sleeves</Link>
+                                </div>
+                            </li>
+                            <li className='list-inline-item'>
+                                <Link to="/"> <FaMobile /> Bottoms</Link>
                                 <div className="submenu shadow">
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                </div></li>
-                            <li className='list-inline-item'><Link to="/"> <MdBakeryDining /> Bakery</Link>
+                                    <Link to="/cat"> Jeans</Link>
+                                    <Link to="/cat"> Trousers</Link>
+                                    <Link to="/cat"> Shorts</Link>
+                                    <Link to="/cat"> Skirts</Link>
+                                    <Link to="/cat"> Leggings</Link>
+                                    <Link to="/cat"> Joggers</Link>
+                                </div>
+                            </li>
+                            <li className='list-inline-item'>
+                                <Link to="/"> <MdBakeryDining /> Outerwear</Link>
                                 <div className="submenu shadow">
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                </div></li>
-                            <li className='list-inline-item'><Link to="/"> <MdLocalGroceryStore /> Groceries</Link>
+                                    <Link to="/cat"> Jackets</Link>
+                                    <Link to="/cat"> Hoodies</Link>
+                                    <Link to="/cat"> Coats</Link>
+                                    <Link to="/cat"> Blazers</Link>
+                                    <Link to="/cat"> Cardigans</Link>
+                                    <Link to="/cat"> Sweatshirts</Link>
+                                </div>
+                            </li>
+                            <li className='list-inline-item'>
+                                <Link to="/"> <MdLocalGroceryStore /> Occasion Wear</Link>
                                 <div className="submenu shadow">
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                    <Link to="/"> Fashion</Link>
-                                </div></li>
-                            <li className='list-inline-item'><Link to="/"> <FaMicroblog /> Blog</Link></li>
-                            <li className='list-inline-item'><Link to="/"><BiSolidContact /> Contact us</Link></li>
+                                    <Link to="/cat"> Party Wear</Link>
+                                    <Link to="/cat"> Wedding Wear</Link>
+                                    <Link to="/cat"> Festive Wear</Link>
+                                    <Link to="/cat"> Casual Outfits</Link>
+                                    <Link to="/cat"> Office Wear</Link>
+                                    <Link to="/cat"> Vacation Wear</Link>
+                                </div>
+                            </li>
+                            <li className='list-inline-item'>
+                                <Link to="/"> <FaMicroblog /> Blog</Link>
+                            </li>
+                            <li className='list-inline-item'>
+                                <Link to="/"> <BiSolidContact /> Contact us</Link>
+                            </li>
                         </ul>
                     </div>
+
+
                 </div>
             </div>
         </nav>

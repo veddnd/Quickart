@@ -1,263 +1,146 @@
+import React, { useState, useEffect } from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
-    const [value, setvalue] = useState([100, 60000]);
+const Sidebar = ({ setPriceRange, selectedCategoryIds, setSelectedCategoryIds, selectedBrands,setSelectedBrands }) => {
+    const [value, setValue] = useState([100, 60000]);
+    const [categories, setCategories] = useState([]);
+    const [brands, setBrands] = useState([]);
+    const token = sessionStorage.getItem("authToken");
+
+    // Fetch categories
+    useEffect(() => {
+        fetch("http://localhost:4000/api/category", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (Array.isArray(data)) {
+                    setCategories(data.map((item) => ({ id: item.id, name: item.name })));
+                }
+            })
+            .catch((error) => console.error("Error fetching categories:", error));
+    }, [token]);
+
+    // Fetch brands
+    useEffect(() => {
+        fetch("http://localhost:4000/api/Product", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (Array.isArray(data)) {
+                    const uniqueBrands = [...new Set(data.map((item) => item.brand))];
+                    setBrands(uniqueBrands);
+                }
+            })
+            .catch((error) => console.error("Error fetching brands:", error));
+    }, [token]);
+
     const handlePriceChange = (newValue) => {
-        // Update state with the new range values
-        setvalue(newValue);
+        setValue(newValue);
+        setPriceRange(newValue);
     };
+
+    const handleCategoryChange = (categoryId) => {
+        setSelectedCategoryIds((prevSelectedIds) => {
+            const updatedCategoryIds = prevSelectedIds.includes(categoryId)
+                ? prevSelectedIds.filter((id) => id !== categoryId)
+                : [...prevSelectedIds, categoryId];
+            return updatedCategoryIds;
+        });
+    };
+
+    const handleBrandChange = (brand) => {
+        setSelectedBrands((prevSelectedBrands) => {
+            const updatedBrands = prevSelectedBrands.includes(brand)
+                ? prevSelectedBrands.filter((b) => b !== brand)
+                : [...prevSelectedBrands, brand];
+            return updatedBrands;
+        });
+    };
+
     return (
-        <>
-            <div className="sidebar">
-                <div className="sticky">
-                    <div className="filterBox">
-                        <h6>PRODUCT CATEGORIES</h6>
-                        <div className="scroll">
-                            <ul>
-                                <li>
+        <div className="sidebar">
+            <div className="sticky">
+                <div className="filterBox">
+                    <h6>PRODUCT CATEGORIES</h6>
+                    <div className="scroll">
+                        <ul>
+                            {categories.map((category) => (
+                                <li key={category.id}>
                                     <FormControlLabel
                                         className="w-100"
-                                        control={<Checkbox />}
-                                        label="Men"
+                                        control={
+                                            <Checkbox
+                                                checked={selectedCategoryIds.includes(category.id)}
+                                                onChange={() => handleCategoryChange(category.id)}
+                                            />
+                                        }
+                                        label={category.name}
                                     />
                                 </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Women"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Kids"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Others"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Winter"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Summer"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Rainy"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Others"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Winter"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Summer"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Rainy"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Others"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Winter"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Summer"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Rainy"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Others"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Winter"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Summer"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Rainy"
-                                    />
-                                </li>
-                            </ul>
-                        </div>
+                            ))}
+                        </ul>
                     </div>
-
-                    <div className="filterBoxprice">
-                        <h6>FILTER BY PRICE</h6>
-                        <RangeSlider
-                            value={value}
-                            onInput={handlePriceChange} // Handle value changes
-                            min={100}
-                            max={60000}
-                            step={100}
-                            className="range-slider"
-                        />
-                        <div className="d-flex pt-2 pb-2 pricerange">
-                            <span>
-                                From: <strong className="text-success">Rs:{value[0]}</strong>
-                            </span>
-                            <span className="ml-auto pricerange">
-                                To: <strong className="text-success">Rs:{value[1]}</strong>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div className="filterBox">
-                        <h6>BRANDS</h6>
-                        <div className="scroll">
-                            <ul>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Nike"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Adidas"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Puma"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Zara"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="H&M"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Gucci"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Louis Vuitton"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Levi's"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Tommy Hilfiger"
-                                    />
-                                </li>
-                                <li>
-                                    <FormControlLabel
-                                        className="w-100"
-                                        control={<Checkbox />}
-                                        label="Burberry"
-                                    />
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <Link to="#" ><img src="https://images.unsplash.com/photo-1511895307821-692dc4ad27c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fGdpZnQlMjBjYXJkc3xlbnwwfHwwfHx8MA%3D%3D" /></Link>
                 </div>
+                <div className="filterBoxprice">
+                    <h6>FILTER BY PRICE</h6>
+                    <RangeSlider
+                        value={value}
+                        onInput={handlePriceChange}
+                        min={100}
+                        max={60000}
+                        step={100}
+                        className="range-slider"
+                    />
+                    <div className="d-flex pt-2 pb-2 pricerange">
+                        <span>
+                            From: <strong className="text-success">$:{value[0]}</strong>
+                        </span>
+                        <span className="ml-auto pricerange">
+                            To: <strong className="text-success">$:{value[1]}</strong>
+                        </span>
+                    </div>
+                </div>
+                <div className="filterBox">
+                    <h6>BRANDS</h6>
+                    <div className="scroll">
+                        <ul>
+                            {brands.map((brand) => (
+                                <li key={brand}>
+                                    <FormControlLabel
+                                        className="w-100"
+                                        control={
+                                            <Checkbox
+                                                checked={selectedBrands.includes(brand)}
+                                                onChange={() => handleBrandChange(brand)}
+                                            />
+                                        }
+                                        label={brand}
+                                    />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+                <Link to="#">
+                    <img
+                        src="https://images.unsplash.com/photo-1511895307821-692dc4ad27c5?w=500&auto=format&fit=crop&q=60"
+                        alt="Sidebar Image"
+                    />
+                </Link>
             </div>
-        </>
+        </div>
     );
 };
 

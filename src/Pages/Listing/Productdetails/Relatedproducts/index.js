@@ -1,25 +1,58 @@
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import Productmodal from "../../../../Components/Productmodal";
-import { useState } from "react";
-const Relatedproducts=(props)=>{
-     var productsslideropt = {
-            dots: true,
-            infinite: false,
-            speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 1,
+import axios from "axios";
+
+const Relatedproducts = (props) => {
+    const [products, setProducts] = useState([]); // State for storing products
+    const [isopenproductmodal, setisopenproductmodal] = useState(false); // State for modal
+    const [selectedProduct, setSelectedProduct] = useState(null); // State for selected product
+
+    const token = sessionStorage.getItem("authToken"); // Fetch token from sessionStorage
+
+    const productsslideropt = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+    };
+
+    // Fetch products from API
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get("http://localhost:4000/api/Product", {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Include token in the request headers
+                    },
+                });
+                setProducts(response.data); // Set fetched data to state
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            }
         };
-        
-        const [isopenproductmodal, setisopenproductmodal] = useState(false);
-        const viewproductdetails = (id) => {
-            setisopenproductmodal(true);
-        }
-        const closeProductmodal=()=>{
-            setisopenproductmodal(false);
-        }
-    return(
+
+        fetchProducts();
+    }, [token]);
+
+    const viewProductDetails = (product) => {
+        setSelectedProduct(product); // Set the selected product
+        setisopenproductmodal(true); // Open modal
+    };
+
+    const closeProductModal = () => {
+        setisopenproductmodal(false); // Close modal
+    };
+    const handleAddToCart = (product) => {
+        // Redirect to the product details page with the token
+        const token = sessionStorage.getItem("authToken");
+        const productUrl = `/product/${product._id}?token=${token}`;
+        window.location.href = productUrl; // Redirects the user to the product details page
+    };
+
+
+    return (
         <section className="homeproductss">
             <div className="container">
                 <div className="row">
@@ -32,200 +65,60 @@ const Relatedproducts=(props)=>{
 
                         <div className="product_row">
                             <Slider {...productsslideropt}>
-                                <div className="item productitem">
-                                    <div className="imgwrapper">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3VuZ2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D"
-                                            className="w-100" onClick={() => viewproductdetails(1)} alt="" />
-                                    </div>
-                                    <div className="content">
-                                        <h3 className="producttitle">
-                                            <a
-                                                href="https://klbtheme.com/bacola/product/blue-diamond-almonds-lightly-salted/"
-                                                title="Blue Diamond Almonds Lightly Salted"
-                                                tabindex="0"  alt=""
+                                {products.map((product) => (
+                                    <div className="item productitem" key={product.id}>
+                                        <div className="imgwrapper">
+                                            <img
+                                                src={product.images?.[0]?.[0] || "fallback_image_url"} // Fallback image if none exists
+                                                className="w-100"
+                                                onClick={() => viewProductDetails(product)}
+                                                alt={product.name}
+                                            />
+                                        </div>
+                                        <div className="content">
+                                            <h3 className="producttitle">
+                                            <a href={`/product/${product._id}?token=${sessionStorage.getItem("authToken")}`} title={product.name}>
+                                                    {product.name}
+                                                </a>
+                                            </h3>
+                                            <div className="productmeta">
+                                                <div className="avail">
+                                                    {product.inStock ? "In-Stock" : "Out of Stock"}
+                                                </div>
+                                            </div>
+                                            <div className="price">
+                                                <span className="original-price">
+                                                    ${product.price}
+                                                </span>
+                                                {product.discountedPrice && (
+                                                    <span className="discounted-price">
+                                                        ${product.discountedPrice}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <button
+                                                className="add-to-cart"
+                                                onClick={() => handleAddToCart(product)} // Pass the product here
                                             >
-                                                Blue Diamond Almonds Lightly Salted
-                                            </a>
-                                        </h3>
-                                        <div className="productmeta">
-                                            <div className="avail">In-Stock</div>
+                                                Add to cart
+                                            </button>
                                         </div>
-                                        <div className="price">
-                                            <span className="original-price">$9.35</span>
-                                            <span className="discounted-price">$7.25</span>{" "}
-                                            {/* Price */}
-                                        </div>
-                                        <button className="add-to-cart">Add to cart</button>{" "}
-                                        {/* Add to Cart */}
                                     </div>
-                                </div>
-
-                                <div className="item productitem">
-                                    <div className="imgwrapper">
-                                        <img
-                                            src="https://media.istockphoto.com/id/2149798069/photo/portrait-of-her-she-nice-well-dressed-attractive-lovely-luxury-pretty-cheerful-girl-isolated.jpg?s=612x612&w=0&k=20&c=ZNGGjiRSDzzvhfwxe2sEPY8a-JPRl4E9ZotfedfdV_g="
-                                            className="w-100" onClick={() => viewproductdetails(2)}  alt=""
-                                        />
-                                    </div>
-                                    <div className="content">
-                                        <h3 className="producttitle">
-                                            <a
-                                                href="https://klbtheme.com/bacola/product/blue-diamond-almonds-lightly-salted/"
-                                                title="Blue Diamond Almonds Lightly Salted"
-                                                tabindex="0" alt=""
-                                            >
-                                                Blue Diamond Almonds Lightly Salted
-                                            </a>
-                                        </h3>
-                                        <div className="productmeta">
-                                            <div className="avail">In-Stock</div>
-                                        </div>
-                                        <div className="price">
-                                            <span className="original-price">$9.35</span>
-                                            <span className="discounted-price">$7.25</span>{" "}
-                                            {/* Price */}
-                                        </div>
-                                        <button className="add-to-cart">Add to cart</button>{" "}
-                                        {/* Add to Cart */}
-                                    </div>
-                                </div>
-
-                                <div className="item productitem">
-                                    <div className="imgwrapper">
-                                        <img
-                                            src="https://plus.unsplash.com/premium_photo-1664392147011-2a720f214e01?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHVyc2VzfGVufDB8fDB8fHww"
-                                            className="w-100" onClick={() => viewproductdetails(3)} alt=""
-                                        />
-                                    </div>
-                                    <div className="content">
-                                        <h3 className="producttitle">
-                                            <a
-                                                href="https://klbtheme.com/bacola/product/blue-diamond-almonds-lightly-salted/"
-                                                title="Blue Diamond Almonds Lightly Salted"
-                                                tabindex="0" alt=""
-                                            >
-                                                Blue Diamond Almonds Lightly Salted
-                                            </a>
-                                        </h3>
-                                        <div className="productmeta">
-                                            <div className="avail">In-Stock</div>
-                                        </div>
-                                        <div className="price">
-                                            <span className="original-price">$9.35</span>
-                                            <span className="discounted-price">$7.25</span>{" "}
-                                            {/* Price */}
-                                        </div>
-                                        <button className="add-to-cart">Add to cart</button>{" "}
-                                        {/* Add to Cart */}
-                                    </div>
-                                </div>
-
-                                <div className="item productitem">
-                                    <div className="imgwrapper">
-                                        <img
-                                            src="https://plus.unsplash.com/premium_photo-1688497830977-f9ab9f958ca7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWVuJTIwdHNoaXJ0c3xlbnwwfHwwfHx8MA%3D%3D"
-                                            className="w-100" alt=""
-                                        />
-                                    </div>
-                                    <div className="content">
-                                        <h3 className="producttitle">
-                                            <a
-                                                href="https://klbtheme.com/bacola/product/blue-diamond-almonds-lightly-salted/"
-                                                title="Blue Diamond Almonds Lightly Salted"
-                                                tabindex="0" alt=""
-                                            >
-                                                Blue Diamond Almonds Lightly Salted
-                                            </a>
-                                        </h3>
-                                        <div className="productmeta">
-                                            <div className="avail">In-Stock</div>
-                                        </div>
-                                        <div className="price">
-                                            <span className="original-price">$9.35</span>
-                                            <span className="discounted-price">$7.25</span>{" "}
-                                            {/* Price */}
-                                        </div>
-                                        <button className="add-to-cart">Add to cart</button>{" "}
-                                        {/* Add to Cart */}
-                                    </div>
-                                </div>
-
-                                <div className="item productitem">
-                                    <div className="imgwrapper">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1528812969535-4bcefc071532?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHdvbWVuJTIwa3VydGl8ZW58MHx8MHx8fDA%3D"
-                                            className="w-100" alt=""
-                                        />
-                                    </div>
-                                    <div className="content">
-                                        <h3 className="producttitle">
-                                            <a
-                                                href="https://klbtheme.com/bacola/product/blue-diamond-almonds-lightly-salted/"
-                                                title="Blue Diamond Almonds Lightly Salted"
-                                                tabindex="0" alt=""
-                                            >
-                                                Blue Diamond Almonds Lightly Salted
-                                            </a>
-                                        </h3>
-                                        <div className="productmeta">
-                                            <div className="avail">In-Stock</div>
-                                        </div>
-                                        <div className="price">
-                                            <span className="original-price">$9.35</span>
-                                            <span className="discounted-price">$7.25</span>{" "}
-                                            {/* Price */}
-                                        </div>
-                                        <button className="add-to-cart">Add to cart</button>{" "}
-                                        {/* Add to Cart */}
-                                    </div>
-                                </div>
-
-                                <div className="item productitem">
-                                    <div className="imgwrapper">
-                                        <img
-                                            src="https://plus.unsplash.com/premium_photo-1693242804074-20a78966f4e6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8a2lkc3dlYXJ8ZW58MHx8MHx8fDA%3D"
-                                            className="w-100" alt=""
-                                        />
-                                    </div>
-                                    <div className="content">
-                                        <h3 className="producttitle">
-                                            <a
-                                                href="https://klbtheme.com/bacola/product/blue-diamond-almonds-lightly-salted/"
-                                                title="Blue Diamond Almonds Lightly Salted" alt=""
-                                                tabindex="0"
-                                            >
-                                                Blue Diamond Almonds Lightly Salted
-                                            </a>
-                                        </h3>
-                                        <div className="productmeta">
-                                            <div className="avail">In-Stock</div>
-                                        </div>
-                                        <div className="price">
-                                            <span className="original-price">$9.35</span>
-                                            <span className="discounted-price">$7.25</span>{" "}
-                                            {/* Price */}
-                                        </div>
-                                        <button className="add-to-cart">Add to cart</button>{" "}
-                                        {/* Add to Cart */}
-                                    </div>
-                                </div>
+                                ))}
                             </Slider>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-            {
-                isopenproductmodal === true && <Productmodal closeProductmodal={closeProductmodal} />
-            }
-
-            {/* <Productmodal /> */}
+            {isopenproductmodal && (
+                <Productmodal
+                    closeProductmodal={closeProductModal}
+                    product={selectedProduct} // Pass selected product details
+                />
+            )}
         </section>
-
-        
-    )
-}
+    );
+};
 
 export default Relatedproducts;
